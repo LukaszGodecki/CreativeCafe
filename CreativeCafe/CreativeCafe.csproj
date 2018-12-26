@@ -234,6 +234,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="CodeBase\DataLayer\Queries\IQuery.cs" />
+    <Compile Include="CodeBase\ServiceLayer\Commands\ICommand.cs" />
+    <Compile Include="CodeBase\ServiceLayer\Service\MainService.Commands.cs" />
+    <Compile Include="CodeBase\ServiceLayer\Service\MainService.cs" />
+    <Compile Include="CodeBase\ServiceLayer\Service\MainService.Factory.cs" />
+    <Compile Include="CodeBase\ServiceLayer\Service\MainService.Queries.cs" />
+    <Compile Include="CodeBase\ServiceLayer\Tools\Extensions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
