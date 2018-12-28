@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "src/app/navi/navi.component.css",
+    "inputFile": "src/app/navi/navi.component.scss"
+  },
+  {
+    "outputFile": "src/app/pages/main/main.component.css",
+    "inputFile": "src/app/pages/main/main.component.scss"
+  }
+]
