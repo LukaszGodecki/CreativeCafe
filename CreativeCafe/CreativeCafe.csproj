@@ -48,10 +48,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -121,20 +136,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Owin">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Owin">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
@@ -235,6 +241,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="CodeBase\DataLayer\MainRepository.cs" />
     <Compile Include="CodeBase\DataLayer\Queries\IQuery.cs" />
     <Compile Include="CodeBase\ServiceLayer\Commands\ICommand.cs" />
     <Compile Include="CodeBase\ServiceLayer\Service\MainService.Commands.cs" />
@@ -259,16 +266,33 @@
   <ItemGroup>
     <Content Include=".gitignore" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="dist\AngularCLI\favicon.ico" />
+    <Content Include="dist\AngularCLI\index.html" />
+    <Content Include="dist\AngularCLI\main.js" />
+    <Content Include="dist\AngularCLI\polyfills.js" />
+    <Content Include="dist\AngularCLI\runtime.js" />
+    <Content Include="dist\AngularCLI\styles.js" />
+    <Content Include="dist\AngularCLI\vendor.js" />
+    <Content Include="dist\out-tsc\e2e\src\app.e2e-spec.js" />
+    <Content Include="dist\out-tsc\e2e\src\app.po.js" />
+    <Content Include="dist\out-tsc\src\app\app-routing.module.js" />
+    <Content Include="dist\out-tsc\src\app\app.component.js" />
+    <Content Include="dist\out-tsc\src\app\app.component.spec.js" />
+    <Content Include="dist\out-tsc\src\app\app.module.js" />
+    <Content Include="dist\out-tsc\src\app\navi\navi.component.js" />
+    <Content Include="dist\out-tsc\src\app\navi\navi.component.spec.js" />
+    <Content Include="dist\out-tsc\src\app\pages\contact\contact.component.js" />
+    <Content Include="dist\out-tsc\src\app\pages\contact\contact.component.spec.js" />
+    <Content Include="dist\out-tsc\src\app\pages\main\main.component.js" />
+    <Content Include="dist\out-tsc\src\app\pages\main\main.component.spec.js" />
+    <Content Include="dist\out-tsc\src\environments\environment.js" />
+    <Content Include="dist\out-tsc\src\environments\environment.prod.js" />
+    <Content Include="dist\out-tsc\src\main.js" />
+    <Content Include="dist\out-tsc\src\polyfills.js" />
+    <Content Include="dist\out-tsc\src\test.js" />
     <Content Include="e2e\protractor.conf.js" />
     <Content Include="favicon.ico" />
-    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
@@ -301,16 +325,35 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
-    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
-    <Content Include="Scripts\jquery-3.3.1.js" />
-    <Content Include="Scripts\jquery-3.3.1.min.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.js" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="dist\AngularCLI\main.js.map" />
+    <Content Include="dist\AngularCLI\polyfills.js.map" />
+    <Content Include="dist\AngularCLI\runtime.js.map" />
+    <Content Include="dist\AngularCLI\styles.js.map" />
+    <Content Include="dist\AngularCLI\vendor.js.map" />
+    <Content Include="dist\out-tsc\e2e\src\app.e2e-spec.js.map" />
+    <Content Include="dist\out-tsc\e2e\src\app.po.js.map" />
+    <Content Include="dist\out-tsc\src\app\app-routing.module.js.map" />
+    <Content Include="dist\out-tsc\src\app\app.component.js.map" />
+    <Content Include="dist\out-tsc\src\app\app.component.spec.js.map" />
+    <Content Include="dist\out-tsc\src\app\app.module.js.map" />
+    <Content Include="dist\out-tsc\src\app\navi\navi.component.js.map" />
+    <Content Include="dist\out-tsc\src\app\navi\navi.component.spec.js.map" />
+    <Content Include="dist\out-tsc\src\app\pages\contact\contact.component.js.map" />
+    <Content Include="dist\out-tsc\src\app\pages\contact\contact.component.spec.js.map" />
+    <Content Include="dist\out-tsc\src\app\pages\main\main.component.js.map" />
+    <Content Include="dist\out-tsc\src\app\pages\main\main.component.spec.js.map" />
+    <Content Include="dist\out-tsc\src\environments\environment.js.map" />
+    <Content Include="dist\out-tsc\src\environments\environment.prod.js.map" />
+    <Content Include="dist\out-tsc\src\main.js.map" />
+    <Content Include="dist\out-tsc\src\polyfills.js.map" />
+    <Content Include="dist\out-tsc\src\test.js.map" />
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="src\app\app.component.html" />
     <Content Include="src\app\navi\navi.component.css">
@@ -331,15 +374,18 @@
     <Content Include="src\favicon.ico" />
     <Content Include="src\index.html" />
     <Content Include="src\karma.conf.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -357,38 +403,14 @@
     <Content Include="src\app\navi\navi.component.scss" />
     <Content Include="src\app\pages\main\main.component.scss" />
     <Content Include="src\app\pages\contact\contact.component.scss" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.woff" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="fonts\glyphicons-halflings-regular.eot" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-theme.min.css.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Content\bootstrap-theme.css.map" />
+    <Folder Include="dist\out-tsc\src\app\navi\navi\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
-    <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="e2e\src\app.e2e-spec.ts" />

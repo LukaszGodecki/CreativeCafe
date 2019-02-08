@@ -1,24 +1,7 @@
 <div style="padding:20px;margin-top:30px;background-color:#1abc9c;height:1500px;">
-  <h1>Main</h1>
+  <h1>Contact</h1>
   <h2>Scroll this page to see the effect</h2>
   <h2>The navigation bar will stay at the top of the page while scrolling</h2>
-  
-  <form>
-    <input type="radio" [(ngModel)]="isMan" [value]="true" [ngModelOptions]="{standalone: true}"> Male<br>
-    <input type="radio" [(ngModel)]="isMan" [value]="false" [ngModelOptions]="{standalone: true}"> Female<br>
-  </form>
-
-  <select [(ngModel)]="wybranyTemat">
-    <option *ngFor="let element of tablica" [value]="element" >
-      {{element}}
-    </option>
-  </select>
-
-  <span *ngFor="let ele of tablica">
-    <button>{{ele}}</button>
-  </span>
-
-  <button (click)='sprawdz()'>Sprawdz</button>
 
   <p>Some text some text some text some text..</p>
   <p>Some text some text some text some text..</p>
